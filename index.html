@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080b14">
+<title>Lavkush Tyagi | .NET Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* VOICE: confident engineer, dark developer-studio look the client asked for (matches reference site).
+   IDEA: the page reads like an IDE — a C# profile class, numbered "files" for sections.
+   PICTURE: tilted DeveloperProfile.cs editor card with floating stat badges and a soft glow.
+   COLOUR and TYPE: night #080b14, violet #a78bfa to cyan #67e8f9 gradient, mint status; Manrope + JetBrains Mono labels.
+   LAYOUT: header, split hero, stat strip, six numbered sections, contact, footer. */
+:root{color-scheme:dark;--bg:#080b14;--bg2:#0c1020;--card:#0f1426;--line:#1c2340;--ink:#eef1fa;--soft:#9aa3bf;--mute:#6b7494;--vi:#a78bfa;--cy:#67e8f9;--mint:#34d399;
+--grad:linear-gradient(90deg,#a78bfa,#67e8f9)}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 Manrope,system-ui,sans-serif;overflow-x:clip}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+ background:linear-gradient(#ffffff06 1px,transparent 1px) 0 0/64px 64px,linear-gradient(90deg,#ffffff06 1px,transparent 1px) 0 0/64px 64px;
+ mask-image:radial-gradient(ellipse at 50% 0,#000 20%,transparent 70%)}
+h1,h2,h3,h4{margin:0;line-height:1.08;letter-spacing:-.03em;text-wrap:balance}
+p{margin:0 0 14px}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--cy);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 max(4vw,20px)}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace,monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* header */
+header{position:sticky;top:0;z-index:40;background:#080b14cc;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+header .wrap{display:flex;align-items:center;gap:18px;height:80px;border-bottom:1px solid var(--line)}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;margin-right:auto}
+.logo i{width:38px;height:38px;border-radius:10px;border:1px solid #3b3f7a;display:grid;place-items:center;font:500 13px "JetBrains Mono",ui-monospace,monospace;font-style:normal;color:#c7c9f5;background:#11143a}
+.logo b{font-weight:700;letter-spacing:.18em}.logo b span{color:var(--cy)}
+nav{display:flex;gap:6px}
+nav a{padding:8px 14px;text-decoration:none;color:var(--soft);font-weight:500;font-size:15px;border-radius:8px}
+nav a:hover,nav a.on{color:var(--ink)}
+.talk{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 18px;border:1px solid var(--line);border-radius:10px;text-decoration:none;font-weight:700;font-size:15px}
+.talk:hover{border-color:var(--vi)}
+.talk em{font-style:normal;color:var(--cy)}
+.burger{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:10px;background:none;color:var(--ink);cursor:pointer}
+
+/* hero */
+.hero{padding:clamp(48px,7vw,80px) 0 0}
+.hero>.wrap:first-child{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,64px);align-items:center}
+.avail{display:flex;align-items:center;gap:12px;color:var(--soft);margin-bottom:18px}
+.avail i{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 5px #34d39922;animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 9px #34d39908}}
+.hello{color:var(--cy);margin-bottom:14px}
+.hero h1{font-size:clamp(44px,6.4vw,76px);font-weight:800;margin-bottom:22px}
+.hero h1 .dot{color:var(--cy)}
+.typing{font:15px "JetBrains Mono",ui-monospace,monospace,monospace;color:var(--soft);margin-bottom:18px;min-height:1.6em}
+.typing b{color:var(--ink);font-weight:500}
+.typing .c{display:inline-block;width:2px;height:1.1em;background:var(--cy);vertical-align:-3px;margin-left:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.lead{color:var(--soft);font-size:17px;max-width:52ch}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin:30px 0 30px}
+.btn{display:inline-flex;align-items:center;gap:14px;min-height:50px;padding:0 20px;border-radius:10px;font-weight:700;font-size:15px;text-decoration:none;border:1px solid var(--line);background:#0b0f1d;color:var(--ink);cursor:pointer;font-family:inherit}
+.btn.pri{background:var(--grad);border:0;color:#0b0f1d;box-shadow:0 12px 34px -10px #a78bfa99}
+.btn:hover{transform:translateY(-2px)}
+.socials{display:flex;gap:26px;flex-wrap:wrap}
+.socials a{color:var(--mute);text-decoration:none;font-size:11px}.socials a:hover{color:var(--ink)}
+.scroll{display:inline-flex;align-items:center;gap:14px;margin-top:40px;color:var(--mute);text-decoration:none;font-size:10px}
+.scroll span{width:22px;height:34px;border:1px solid var(--line);border-radius:12px;position:relative}
+.scroll span::after{content:"";position:absolute;left:50%;top:8px;width:2px;height:7px;background:var(--soft);border-radius:2px;transform:translateX(-50%);animation:wheel 1.8s infinite}
+@keyframes wheel{60%{transform:translate(-50%,8px);opacity:0}}
+
+/* code card */
+.stage{position:relative;perspective:1400px;padding:30px 0}
+.stage::before{content:"";position:absolute;inset:6% 4%;border-radius:50%;border:1px solid #1c234088;background:radial-gradient(circle,#a78bfa22,transparent 65%)}
+.ide{position:relative;background:linear-gradient(180deg,#121830,#0c1122);border:1px solid #232b4d;border-radius:16px;transform:rotateY(-9deg) rotateX(4deg) rotate(-1deg);box-shadow:0 40px 80px -30px #000,0 0 0 1px #ffffff05 inset;font:13.5px/2 "JetBrains Mono",ui-monospace,monospace,monospace;transition:transform .6s}
+.stage:hover .ide{transform:none}
+.bar{display:flex;align-items:center;gap:7px;padding:12px 16px;border-bottom:1px solid #1c2340;color:var(--mute);font-size:12px}
+.bar i{width:10px;height:10px;border-radius:50%}
+.bar .f{margin-left:10px}.bar .on{margin-left:auto;color:var(--mint);font-size:11px;letter-spacing:.12em}
+.src{padding:16px 6px 16px 0;overflow-x:auto;white-space:pre}
+.ln{display:block}.ln u{display:inline-block;width:44px;text-align:right;padding-right:18px;color:#3c4466;text-decoration:none}
+.k{color:#c4a7ff}.t{color:var(--cy)}.s{color:#a7f3d0}.b{color:#fbbf77}
+.foot{display:flex;justify-content:space-between;padding:10px 18px;border-top:1px solid #1c2340;color:var(--mute);font-size:11px}
+.badge{position:absolute;display:flex;align-items:center;gap:12px;background:#11162bdd;backdrop-filter:blur(10px);border:1px solid #262f55;border-radius:12px;padding:12px 16px;box-shadow:0 20px 40px -18px #000;animation:float 6s ease-in-out infinite}
+.badge .ic{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;background:#2a2560;color:#c7b8ff;font-weight:700}
+.badge.b2 .ic{background:#0f3b36;color:var(--mint)}
+.badge b{display:block;font-size:14px}.badge small{color:var(--mute);font-size:11px}
+.b1{top:0;right:-10px}.b2{bottom:6px;left:-14px;animation-delay:-3s}
+@keyframes float{50%{transform:translateY(-8px)}}
+
+/* hero chips + marquee */
+.hchips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}
+.hchips span{font:12px "JetBrains Mono",ui-monospace,monospace;padding:5px 12px;border-radius:999px;border:1px solid #2b3460;color:#c9cfe6;background:#0e1328}
+.hchips span.hi{border-color:#67e8f955;color:var(--cy);background:#67e8f90d}
+.marq{margin-top:clamp(48px,6vw,72px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:18px 0;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.marq div{display:flex;gap:44px;width:max-content;animation:mq 45s linear infinite}
+.marq span{font-weight:700;font-size:18px;color:#5d6688;white-space:nowrap}
+.marq span::after{content:"✦";margin-left:44px;color:#3b3f7a;font-size:12px;vertical-align:3px}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* journey + services */
+.journey{margin-top:40px;display:grid;gap:0;border-left:1px solid var(--line);margin-left:4px}
+.journey div{display:grid;grid-template-columns:90px minmax(0,1fr);gap:14px;padding:0 0 18px 22px;position:relative}
+.journey div::before{content:"";position:absolute;left:-5px;top:8px;width:9px;height:9px;border-radius:50%;background:var(--vi)}
+.journey b{font:600 14px "JetBrains Mono",ui-monospace,monospace;color:var(--cy)}
+.journey span{color:var(--soft)}
+.services{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.svc{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px}
+.svc .sym{margin-bottom:20px}
+.svc h3{font-size:19px;font-weight:700;margin-bottom:8px}
+.svc p{color:var(--soft);font-size:15px;margin:0}
+.traits{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:16px}
+.trait{border:1px dashed #2b3460;border-radius:16px;padding:20px}
+.trait b{display:block;margin-bottom:4px}.trait span{color:var(--soft);font-size:14px}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1px solid var(--line)}
+.stats div{padding:28px 24px;border-left:1px solid var(--line)}.stats div:first-child{border-left:0;padding-left:0}
+.stats strong{display:block;font-size:clamp(30px,3.4vw,40px);font-weight:700;letter-spacing:-.03em;line-height:1.1;margin-bottom:10px}
+.stats strong em{font-style:normal;color:var(--cy)}
+.stats span{color:var(--mute);font-size:11px}
+
+/* sections */
+section{padding:clamp(80px,10vw,130px) 0 0}
+.sh{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:end;margin-bottom:48px}
+.sh.one{grid-template-columns:minmax(0,1fr)}
+.tag{color:var(--vi);margin-bottom:16px}
+h2{font-size:clamp(34px,4.6vw,56px);font-weight:800}
+.sh p{color:var(--soft);margin:0;max-width:48ch}
+
+/* about */
+.about{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,5vw,72px)}
+.about p{color:var(--soft);font-size:17px}.about strong{color:var(--ink)}
+.inline{display:inline-flex;gap:8px;margin-top:10px;color:var(--cy);font-weight:700;text-decoration:none;border-bottom:1px solid #67e8f955;padding-bottom:3px}
+.info{display:grid;gap:12px}
+.info div{display:flex;gap:18px;align-items:center;padding:18px 20px;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.info u{font:12px "JetBrains Mono",ui-monospace,monospace;color:var(--vi);text-decoration:none}
+.info small{display:block;color:var(--mute);font-size:10px;margin-bottom:2px}
+.info b{font-weight:600}
+
+/* toolkit */
+.tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.tool{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;transition:border-color .3s}
+.tool:hover{border-color:#3b3f7a}
+.tool .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
+.sym{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:20px;background:#171c3a;color:#c7b8ff;border:1px solid #262f55}
+.tool .top u{font:12px "JetBrains Mono",ui-monospace,monospace;color:var(--mute);text-decoration:none}
+.tool h3{font-size:22px;font-weight:700;margin-bottom:10px}
+.tool p{color:var(--soft);font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.chips span{font:12px "JetBrains Mono",ui-monospace,monospace;padding:5px 11px;border-radius:999px;border:1px solid #262f55;color:#c9cfe6;background:#0b0f1d}
+
+/* experience */
+.tl{position:relative;border-left:1px solid var(--line);margin-left:6px}
+.job{position:relative;display:grid;grid-template-columns:200px minmax(0,1fr);gap:28px;padding:0 0 48px 36px}
+.job::before{content:"";position:absolute;left:-6px;top:6px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--vi)}
+.job.cur::before{background:var(--cy);border-color:var(--cy);box-shadow:0 0 0 6px #67e8f922}
+.when{color:var(--mute);font-size:11px;padding-top:6px}
+.job h3{font-size:24px;font-weight:700;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.cur-tag{font:10px "JetBrains Mono",ui-monospace,monospace;letter-spacing:.14em;padding:4px 10px;border-radius:999px;color:var(--mint);border:1px solid #34d39955;background:#34d39912}
+.job h4{color:var(--soft);font-weight:500;font-size:16px;margin:6px 0 14px;letter-spacing:0}
+.job ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.job li{position:relative;padding-left:22px;color:var(--soft)}
+.job li::before{content:"▹";position:absolute;left:0;color:var(--cy)}
+.job li b{color:var(--ink);font-weight:600}
+.job p{color:var(--soft)}
+
+/* projects */
+.projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.proj{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .3s,transform .3s}
+.proj:hover{border-color:#3b3f7a;transform:translateY(-4px)}
+.ph{display:flex;justify-content:space-between;padding:20px 24px 0;color:var(--mute);font-size:11px}
+.ph em{font-style:normal;color:var(--vi)}
+.viz{margin:18px 24px 0;height:150px;border-radius:14px;border:1px solid #1f2747;background:radial-gradient(circle at 30% 20%,#a78bfa1f,transparent 60%),radial-gradient(circle at 80% 90%,#67e8f91a,transparent 55%),#0a0e1c;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;padding:16px;position:relative}
+.viz .n{font:11px "JetBrains Mono",ui-monospace,monospace;letter-spacing:.12em;padding:8px 12px;border-radius:8px;border:1px solid #2b3460;background:#121833;color:#cfd5ee;white-space:nowrap}
+.viz .n.hi{border-color:#67e8f966;color:var(--cy)}
+.viz .ar{color:#4a5380;font-size:14px}
+.viz .cap{position:absolute;left:14px;bottom:10px;font:10px "JetBrains Mono",ui-monospace,monospace;letter-spacing:.16em;color:var(--mute)}
+.pb{padding:22px 24px 24px;display:flex;flex-direction:column;flex:1}
+.pb h3{font-size:22px;font-weight:700;margin-bottom:10px}
+.pb p{color:var(--soft);font-size:15px;flex:1}
+.metric{display:flex;align-items:baseline;gap:10px;margin:4px 0 16px}
+.metric b{font-size:22px;font-weight:800}.metric span{color:var(--mute);font-size:13px}
+.ov{align-self:flex-start;margin-top:18px;min-height:44px;padding:0 16px;border-radius:10px;border:1px solid var(--line);background:none;color:var(--ink);font:700 14px Manrope,system-ui,sans-serif;cursor:pointer;display:inline-flex;gap:10px;align-items:center}
+.ov:hover{border-color:var(--cy)}.ov em{font-style:normal;color:var(--cy)}
+.fine{color:var(--mute);font-size:14px;margin-top:22px}
+
+/* education */
+.edu{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.ed{position:relative;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px}
+.ed .mono{color:var(--mute);font-size:11px}
+.ed h3{font-size:21px;font-weight:700;margin:14px 0 8px}
+.ed p{color:var(--soft);font-size:15px;margin:0}
+.grade{position:absolute;top:22px;right:22px;font-weight:800;font-size:18px}
+.certs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px}
+
+/* contact */
+.contact{margin-top:clamp(80px,10vw,130px);padding:clamp(70px,9vw,110px) 0;text-align:center;background:radial-gradient(ellipse at 50% 100%,#2a2770aa,transparent 60%),var(--bg2);border-top:1px solid var(--line)}
+.contact h2{font-size:clamp(38px,6vw,72px);margin:0 auto 20px;max-width:14ch}
+.contact p{color:var(--soft);font-size:18px}
+.mail{display:inline-flex;align-items:center;gap:14px;font-size:clamp(20px,3.2vw,34px);font-weight:700;text-decoration:none;margin:18px 0 26px;overflow-wrap:anywhere;flex-wrap:wrap;justify-content:center}
+.mail em{font-style:normal;color:var(--cy)}
+.cbtn{min-height:38px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--soft);font:600 13px Manrope,system-ui,sans-serif;cursor:pointer}
+.cl{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.cl a{min-height:46px;display:inline-flex;align-items:center;padding:0 18px;border:1px solid var(--line);border-radius:10px;text-decoration:none;font-weight:600;background:#0b0f1d}
+.cl a:hover{border-color:var(--vi)}
+footer .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:26px;padding-bottom:26px;color:var(--mute);font-size:14px}
+
+/* modal */
+dialog{border:1px solid #262f55;border-radius:20px;padding:0;width:min(640px,94vw);background:#0e1328;color:var(--ink);box-shadow:0 40px 90px -20px #000}
+dialog::backdrop{background:#04060dcc;backdrop-filter:blur(6px)}
+.md{padding:30px}
+.md .mono{color:var(--vi)}
+.md h3{font-size:28px;font-weight:800;margin:10px 0 14px}
+.md p{color:var(--soft)}
+.md h4{font-size:12px;font-family:"JetBrains Mono",ui-monospace,monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin:20px 0 10px}
+.md ul{margin:0;padding-left:20px;color:var(--soft)}
+.x{float:right;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:none;color:var(--ink);font-size:20px;cursor:pointer}
+.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,90px);background:var(--grad);color:#0b0f1d;font-weight:700;padding:10px 18px;border-radius:999px;transition:transform .3s,visibility .3s;z-index:60;visibility:hidden}
+.toast.show{transform:translate(-50%,0);visibility:visible}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+.no-js .rv{opacity:1;transform:none}
+
+@media(max-width:980px){
+ .services{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.traits{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+ .hero>.wrap:first-child,.about,.sh{grid-template-columns:minmax(0,1fr)}
+ .stage{max-width:560px}
+ .edu{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+}
+@media(max-width:760px){
+ nav{display:none;position:absolute;top:80px;left:0;right:0;flex-direction:column;background:#080b14f5;padding:10px 20px 20px;border-bottom:1px solid var(--line)}
+ nav.open{display:flex}nav a{padding:12px 4px}
+ .burger{display:grid;place-items:center}.talk{display:none}
+ .tools,.projects,.edu,.certs,.services{grid-template-columns:minmax(0,1fr)}
+ .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .stats div{padding:22px 16px;border-top:1px solid var(--line)}.stats div:nth-child(-n+2){border-top:0}.stats div:nth-child(odd){border-left:0;padding-left:0}
+ .job{grid-template-columns:minmax(0,1fr);gap:6px;padding-left:26px}
+ .b1{right:0}.b2{left:0}
+ .ide{font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body class="no-js">
+
+<header><div class="wrap">
+ <a class="logo" href="#home" aria-label="Lavkush home"><i>LT</i><b>LAVKUSH<span>.</span></b></a>
+ <nav id="nav" aria-label="Main"><a href="#about">About</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#services">Services</a><a href="#education">Education</a></nav>
+ <a class="talk" href="#contact">Hire me <em>↗</em></a>
+ <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+</div></header>
+
+<main id="home">
+<div class="hero"><div class="wrap">
+ <div>
+  <div class="avail mono"><i></i>Available for the right opportunity</div>
+  <p class="hello mono">Hello, I'm</p>
+  <h1>Lavkush <span class="grad">Tyagi</span><span class="dot">.</span></h1>
+  <div class="typing" aria-live="off">I am a <b id="typed"></b><span class="c"></span></div>
+  <div class="hchips"><span class="hi">C#</span><span class="hi">ASP.NET Core</span><span class="hi">SQL Server</span><span>Web API</span><span>Redis</span><span>Azure</span><span>jQuery</span></div>
+  <p class="lead">I build web apps and APIs with C#, ASP.NET Core and SQL Server. For 3+ years I have worked on payment, forex, SMS and logistics projects.</p>
+  <div class="ctas">
+   <a class="btn pri" href="#projects">See my projects <span>↘</span></a>
+   <a class="btn" href="#contact">Contact me <span>→</span></a>
+  </div>
+  <div class="socials mono">
+   <a href="https://www.linkedin.com/in/lavkush-tyagi-9a0667156/" target="_blank" rel="noopener">LinkedIn ↗</a>
+   <a href="mailto:lavkushtyagi22@gmail.com">Email ↗</a>
+   <a href="tel:+918439905257">Call ↗</a>
+  </div>
+  <a class="scroll mono" href="#about"><span></span>Scroll to explore</a>
+ </div>
+
+ <div class="stage" aria-label="Code card describing Lavkush as a C# class">
+  <div class="ide">
+   <div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="f">DeveloperProfile.cs</span><span class="on">● ONLINE</span></div>
+   <div class="src" id="src"></div>
+   <div class="foot"><span>Always learning</span><span>UTF-8 &nbsp; C#</span></div>
+  </div>
+  <div class="badge b1"><span class="ic">⌘</span><div><b>20+ APIs</b><small>Live and in use</small></div></div>
+  <div class="badge b2"><span class="ic">↗</span><div><b>CPSP certified</b><small>Payment security</small></div></div>
+ </div>
+</div>
+
+<div class="marq" aria-hidden="true"><div id="marq"></div></div>
+<div class="wrap"><div class="stats">
+ <div><strong>3<em>+</em></strong><span class="mono">Years experience</span></div>
+ <div><strong>20<em>+</em></strong><span class="mono">APIs built</span></div>
+ <div><strong>35<em>%</em></strong><span class="mono">Faster SQL queries</span></div>
+ <div><strong>.NET</strong><span class="mono">Main skill</span></div>
+</div></div>
+</div>
+
+<section id="about"><div class="wrap">
+ <div class="sh rv"><div><p class="tag mono">01 / About me</p><h2>A developer who likes things to just work.</h2></div></div>
+ <div class="about">
+  <div class="rv">
+   <p>Hi, I'm Lavkush. I'm a <strong>Software Developer II at Yoeki Soft</strong> in Noida.</p>
+   <p>I build websites, web apps and APIs using C#, ASP.NET Core and SQL Server. Most of my work is on money-related systems, like payments and forex, where every record has to be correct.</p>
+   <p>I like writing clean code, making slow pages and queries faster, and connecting apps with other services like payment gateways and Dynamics 365.</p>
+   <a class="inline" href="#contact">Want to work together? Let's talk ↗</a>
+   <div class="journey">
+    <div><b>2017</b><span>Started my BCA in Modinagar</span></div>
+    <div><b>2021</b><span>Started my MCA in Ghaziabad</span></div>
+    <div><b>Jan 2023</b><span>Six months of ASP.NET training</span></div>
+    <div><b>Jun 2023</b><span>Joined Yoeki Soft as Software Developer</span></div>
+    <div><b>Apr 2026</b><span>Promoted to Software Developer II</span></div>
+   </div>
+  </div>
+  <div class="info rv">
+   <div><u>01</u><span><small class="mono">Location</small><b>Ghaziabad, Uttar Pradesh, India</b></span></div>
+   <div><u>02</u><span><small class="mono">Job</small><b>Software Developer II, Yoeki Soft</b></span></div>
+   <div><u>03</u><span><small class="mono">Education</small><b>MCA (A++) · BCA</b></span></div>
+   <div><u>04</u><span><small class="mono">I like working on</small><b>APIs · Payments · Speed</b></span></div>
+   <div><u>05</u><span><small class="mono">Languages</small><b>Hindi · English</b></span></div>
+  </div>
+ </div>
+</div></section>
+
+<section id="skills"><div class="wrap">
+ <div class="sh rv"><div><p class="tag mono">02 / Skills</p><h2>Tools I use every day.</h2></div><p>The languages, frameworks and tools I use to build and ship my work.</p></div>
+ <div class="tools" id="tools"></div>
+</div></section>
+
+<section id="experience"><div class="wrap">
+ <div class="sh one rv"><div><p class="tag mono">03 / Experience</p><h2>Where I have worked.</h2></div></div>
+ <div class="tl" id="tl"></div>
+</div></section>
+
+<section id="projects"><div class="wrap">
+ <div class="sh rv"><div><p class="tag mono">04 / Projects</p><h2>Things I have built.</h2></div><p>Real projects used by real businesses. Click a card to see more.</p></div>
+ <div class="projects" id="projects-list"></div>
+ <p class="fine rv">These projects belong to clients, so I only share the main details.</p>
+</div></section>
+
+<section id="services"><div class="wrap">
+ <div class="sh rv"><div><p class="tag mono">05 / Services</p><h2>How I can help.</h2></div><p>What I can do for your team or project.</p></div>
+ <div class="services">
+  <div class="svc rv"><span class="sym" aria-hidden="true">⌘</span><h3>Build APIs</h3><p>Fast and secure REST APIs with ASP.NET Core, ready for web and mobile apps.</p></div>
+  <div class="svc rv"><span class="sym" aria-hidden="true">▤</span><h3>Database work</h3><p>Design SQL Server tables, write stored procedures and make slow queries faster.</p></div>
+  <div class="svc rv"><span class="sym" aria-hidden="true">₹</span><h3>Payment setup</h3><p>Connect payment gateways safely, following payment security rules.</p></div>
+  <div class="svc rv"><span class="sym" aria-hidden="true">⇄</span><h3>Connect other apps</h3><p>Link your app with services like Dynamics 365, eSign and SMS providers.</p></div>
+  <div class="svc rv"><span class="sym" aria-hidden="true">◧</span><h3>Web apps</h3><p>Full web apps with ASP.NET MVC, jQuery and AJAX that load quickly.</p></div>
+  <div class="svc rv"><span class="sym" aria-hidden="true">☁</span><h3>Azure and background jobs</h3><p>Azure Functions and Windows Services that run tasks on their own.</p></div>
+ </div>
+ <div class="traits">
+  <div class="trait rv"><b>On time</b><span>I finish what I promise.</span></div>
+  <div class="trait rv"><b>Full ownership</b><span>From the first idea to going live.</span></div>
+  <div class="trait rv"><b>Security first</b><span>Safe code from the start.</span></div>
+  <div class="trait rv"><b>Team player</b><span>Happy to review code and help others.</span></div>
+ </div>
+</div></section>
+
+<section id="education"><div class="wrap">
+ <div class="sh rv"><div><p class="tag mono">06 / Education</p><h2>What I have studied.</h2></div></div>
+ <div class="edu">
+  <div class="ed rv"><span class="mono">2021 — 2023</span><h3>Master of Computer Applications</h3><p>R.D. Engineering College, Ghaziabad (AKTU)</p><span class="grade grad">A++</span></div>
+  <div class="ed rv"><span class="mono">2017 — 2020</span><h3>Bachelor of Computer Applications</h3><p>MM PG College, Modinagar (CCS University, Meerut)</p></div>
+  <div class="ed rv"><span class="mono">Recognition</span><h3>Beyond the code</h3><p>Won the college coding competition during my MCA.</p><span class="grade grad">✳</span></div>
+ </div>
+ <div class="certs">
+  <div class="ed rv"><span class="mono">Certification</span><h3>Certified Payment Security Practitioner</h3><p>From Panacea Infosec. Covers how to keep card payments safe (PCI DSS).</p></div>
+  <div class="ed rv"><span class="mono">Courses</span><h3>Courses</h3><p>Foundational C# with Microsoft · ASP.NET MVC Course for Beginners · HTML5 training · Python program workshop.</p></div>
+ </div>
+</div></section>
+</main>
+
+<section class="contact" id="contact" style="padding-top:clamp(70px,9vw,110px)"><div class="wrap">
+ <p class="tag mono">07 / Contact</p>
+ <h2>Let's work together.</h2>
+ <p>Have a job, project or question? Email me or give me a call.</p>
+ <div><a class="mail" href="mailto:lavkushtyagi22@gmail.com">lavkushtyagi22@gmail.com <em>↗</em></a></div>
+ <div class="cl">
+  <a href="tel:+918439905257">+91 84399 05257</a>
+  <a href="https://www.linkedin.com/in/lavkush-tyagi-9a0667156/" target="_blank" rel="noopener">LinkedIn ↗</a>
+  <button class="cbtn" id="copyMail" type="button">Copy email</button>
+ </div>
+</div></section>
+
+<footer><div class="wrap">
+ <a class="logo" href="#home" style="margin:0"><i>LT</i><b>LAVKUSH<span>.</span></b></a>
+ <span>Made with care in India.</span>
+ <span>© 2026 Lavkush Tyagi</span>
+</div></footer>
+
+<dialog id="dlg" aria-labelledby="mT"><div class="md" id="mB"></div></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+{
+document.body.classList.remove('no-js');
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $=id=>document.getElementById(id);
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* code card */
+const code=[
+ '<span class="k">public class</span> <span class="t">Developer</span>','{',
+ '  <span class="k">public string</span> Name = <span class="s">"Lavkush Tyagi"</span>;',
+ '  <span class="k">public string</span> Role = <span class="s">"Software Developer II"</span>;',
+ '  <span class="k">public string</span>[] Stack =','  {',
+ '    <span class="s">"C#"</span>, <span class="s">".NET 10"</span>, <span class="s">"SQL Server"</span>,',
+ '    <span class="s">"Redis"</span>, <span class="s">"Azure"</span>','  };',
+ '  <span class="k">public int</span> ApisShipped = <span class="b">20</span>;',
+ '  <span class="k">public bool</span> KeepLearning = <span class="b">true</span>;','}'];
+const tech=['C#','.NET 10','ASP.NET Core','Web API','ASP.NET MVC','SQL Server','T-SQL','Redis','Azure Functions','Azure DevOps','JWT','TLS','jQuery','AJAX','Windows Services','Dynamics 365','IIS','GitHub','Postman'];
+$('marq').innerHTML=[...tech,...tech].map(t=>`<span>${t}</span>`).join('');
+$('src').innerHTML=code.map((l,i)=>`<span class="ln"><u>${String(i+1).padStart(2,'0')}</u>${l}</span>`).join('');
+
+/* typing */
+const words=['.NET Developer','C# Developer','API Developer','SQL Server Developer'];
+const typed=$('typed');
+if(reduce){typed.textContent=words[0];}else{
+ let w=0,c=0,del=false;
+ const tick=()=>{const word=words[w];c+=del?-1:1;typed.textContent=word.slice(0,c);
+  let d=del?40:85;
+  if(!del&&c===word.length){del=true;d=1500;}else if(del&&c===0){del=false;w=(w+1)%words.length;d=300;}
+  setTimeout(tick,d);};
+ tick();}
+
+/* toolkit */
+const tools=[
+ ['⌘','Backend','C#, ASP.NET Core (.NET 8 and .NET 10), Web API, ASP.NET MVC, Web Forms, Windows Services, Clean Architecture.',['C#','.NET','Web API']],
+ ['▤','Database','SQL Server, T-SQL, stored procedures, making queries faster, Redis cache, SSMS.',['SQL Server','T-SQL','Redis']],
+ ['⛨','Security and integrations','JWT login, TLS, payment security (PCI DSS), payment gateways, eSign, SMS (SMPP), Dynamics 365.',['JWT','TLS','Dynamics 365']],
+ ['⌁','Cloud, tools and frontend','Azure, Azure DevOps, IIS, GitHub, Bitbucket, Visual Studio, Postman, jQuery, AJAX, HTML, CSS.',['Azure','Git','jQuery']]
+];
+$('tools').innerHTML=tools.map(([s,h,p,c],i)=>`<article class="tool rv"><div class="top"><span class="sym" aria-hidden="true">${s}</span><u>${String(i+1).padStart(2,'0')}</u></div><h3>${esc(h)}</h3><p>${esc(p)}</p><div class="chips">${c.map(x=>`<span>${esc(x)}</span>`).join('')}</div></article>`).join('');
+
+/* experience */
+const jobs=[
+ {w:'Apr 2026 — Present',r:'Software Developer II',o:'Yoeki Soft Private Limited · Noida',cur:true,p:['Build APIs on <b>.NET 10</b> for live business apps.','Connect apps with payment gateways, Dynamics 365 and eSign.']},
+ {w:'Jun 2023 — Apr 2026',r:'Software Developer I',o:'Yoeki Soft Private Limited · Noida',p:[
+  'Built and looked after <b>3+ live web apps</b> using ASP.NET Core and Web Forms.',
+  'Built <b>20+ APIs</b> for our own apps and for other companies\' services.',
+  'Made SQL queries <b>25–35% faster</b>.',
+  'Made pages load <b>about 30% faster</b> using jQuery and AJAX.',
+  'Set up Windows Services that do routine work on their own, saving <b>about 40%</b> of manual effort.',
+  'Used Redis to make common data load faster.',
+  'Deployed apps on Azure and kept APIs safe with JWT and TLS.',
+  'Worked in an Agile team with testers, analysts and DevOps.']},
+ {w:'Jan 2023 — Jun 2023',r:'Student Trainee',o:'Alok Srivastava (Freelancer) · Ghaziabad',d:'Six months of hands-on ASP.NET training, learning how to build the back end and work with databases.'}
+];
+$('tl').innerHTML=jobs.map(j=>`<article class="job rv${j.cur?' cur':''}"><div class="when mono">${esc(j.w)}</div><div><h3>${esc(j.r)}${j.cur?'<span class="cur-tag">CURRENT</span>':''}</h3><h4>${esc(j.o)}</h4>${j.p?`<ul>${j.p.map(x=>`<li>${x}</li>`).join('')}</ul>`:`<p>${esc(j.d)}</p>`}</div></article>`).join('');
+
+/* projects */
+const projects=[
+ {k:'Forex',t:'GOFX — Forex Trading Platform',d:'An app where people buy and sell foreign currency. I built the APIs for placing orders and handling payments.',g:['ASP.NET Core 8','C#','SQL Server','JWT','TLS'],m:'25%',ml:'fewer failed transactions',
+  v:['ORDER','→','API','→','SQL','TRADE FLOW'],f:['APIs to place trades and track orders','Secure login with JWT','Data kept safe with TLS','Faster SQL queries']},
+ {k:'Payments',t:'QR Synergies — QR Code Payments',d:'A system for paying by scanning a QR code. I built the APIs and connected the payment gateway.',g:['ASP.NET MVC','C#','Web API','Payment gateway'],m:'25–30%',ml:'more successful payments',
+  v:['QR','→','GATEWAY','→','✓','PAYMENT FLOW'],f:['APIs for QR payments','Payment gateway connection','Better checks and error logging']},
+ {k:'Messaging',t:'SMUC — Secure SMS Platform',d:'A platform for sending SMS messages safely. I built the secure back end.',g:['ASP.NET MVC','C#','SMPP','TLS'],m:'Auto retry',ml:'when a message fails',
+  v:['API','→','SMPP','→','SMS','SECURE SMS'],f:['Secure SMS sending with TLS','Retries failed messages','Clear error logs']},
+ {k:'Logistics',t:'A1R — Water Transport System',d:'An app to manage water delivery and stock. It stays in sync with Microsoft Dynamics 365.',g:['ASP.NET MVC','SQL Server','REST APIs','Dynamics 365'],m:'20%',ml:'faster app',
+  v:['TRUCK','→','STOCK','⇄','D365','DELIVERY · SYNC'],f:['Delivery and stock modules','Live sync with Dynamics 365','Faster APIs and queries']}
+];
+$('projects-list').innerHTML=projects.map((p,i)=>{const cap=p.v[p.v.length-1],nodes=p.v.slice(0,-1);
+ return `<article class="proj rv"><div class="ph mono"><span><em>${String(i+1).padStart(2,'0')}</em> / ${esc(p.k)}</span><span>↗</span></div>
+ <div class="viz" aria-hidden="true">${nodes.map((n,j)=>/^[→⇄]$/.test(n)?`<span class="ar">${n}</span>`:`<span class="n${j===nodes.length-1?' hi':''}">${esc(n)}</span>`).join('')}<span class="cap">${esc(cap)}</span></div>
+ <div class="pb"><h3>${esc(p.t)}</h3><p>${esc(p.d)}</p><div class="metric"><b class="grad">${esc(p.m)}</b><span>${esc(p.ml)}</span></div><div class="chips">${p.g.map(x=>`<span>${esc(x)}</span>`).join('')}</div>
+ <button class="ov" type="button" data-i="${i}">See details <em>↗</em></button></div></article>`;}).join('');
+const dlg=$('dlg');
+$('projects-list').addEventListener('click',e=>{const b=e.target.closest('.ov');if(!b)return;const p=projects[+b.dataset.i];
+ $('mB').innerHTML=`<button class="x" id="mX" type="button" aria-label="Close">×</button><span class="mono">Project · ${esc(p.k)}</span><h3 id="mT">${esc(p.t)}</h3><p>${esc(p.d)}</p><div class="metric"><b class="grad">${esc(p.m)}</b><span>${esc(p.ml)}</span></div><h4>What I did</h4><ul>${p.f.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><h4>Built with</h4><div class="chips">${p.g.map(x=>`<span>${esc(x)}</span>`).join('')}</div>`;
+ dlg.showModal();$('mX').onclick=()=>dlg.close();});
+dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close();});
+
+/* reveal */
+const rvs=document.querySelectorAll('.rv');
+if('IntersectionObserver' in window&&!reduce){const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}}),{threshold:.12});rvs.forEach(r=>io.observe(r));
+ setTimeout(()=>rvs.forEach(r=>r.classList.add('in')),4000);}else rvs.forEach(r=>r.classList.add('in'));
+
+/* nav */
+const nav=$('nav'),bg=$('burger');
+bg.addEventListener('click',()=>{const o=nav.classList.toggle('open');bg.setAttribute('aria-expanded',o);});
+nav.addEventListener('click',e=>{if(e.target.tagName==='A'){nav.classList.remove('open');bg.setAttribute('aria-expanded','false');}});
+const links=[...nav.querySelectorAll('a')];
+const spy=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting)links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+en.target.id));}),{rootMargin:'-45% 0px -50% 0px'});
+['about','skills','experience','projects','services','education'].forEach(id=>spy.observe($(id)));
+
+/* copy */
+const toast=$('toast');let tt;
+$('copyMail').addEventListener('click',async()=>{try{await navigator.clipboard.writeText('lavkushtyagi22@gmail.com');toast.textContent='Email copied';}catch(e){toast.textContent='Copy blocked — select the address instead';}
+ toast.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('show'),1800);});
+}
+</script>
+</body>
+</html>
